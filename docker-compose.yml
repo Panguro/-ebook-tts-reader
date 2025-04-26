@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  ebook-tts-reader:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ebooks:/ebooks
+      - ./temp:/app/temp
+      - ./public/audio:/app/public/audio
+    environment:
+      - PORT=3000
+      - EBOOKS_DIR=/ebooks
+    restart: unless-stopped
